@@ -1,6 +1,7 @@
 #coding:utf-8
 import re
 import sys
+sys.path.append("../../../libs/")
 import glob
 import os
 from pyexcel_ods import save_data
@@ -14,8 +15,8 @@ def write_ods(l1, lines, next_cut, fic):
     data["Feuil1"].append(l)
   save_data(Fname, data)
 
-def cut_wb(fic, cut=10):
-  print "\nWill cut original file in files with %s lines at most\n"%str(cut)
+def cut_wb(fic, cut=1000):
+  print "\nWill cut the original file (%s) in files with %s lines at most\n"%(fic, str(cut))
   data = get_data(fic)
   NB_lignes = 0
   ligne_debut= []
@@ -23,7 +24,7 @@ def cut_wb(fic, cut=10):
   next_cut = cut
   for feuille, rows in data.iteritems():
     current_line = []
-    for row in rows[:1000]:
+    for row in rows:
       if NB_lignes==0:
           ligne_debut = row
       else: 
