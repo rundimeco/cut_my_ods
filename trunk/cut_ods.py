@@ -11,6 +11,7 @@ def write_ods(l1, lines, next_cut, fic):
   window = "%s-%s"%(str(next_cut-len(lines)+1),str(next_cut))
   Fname = re.sub("\.ods", "_%s.ods"%(window), fic)
   data= {"Feuil1":[]}
+  data["Feuil1"].append(l1)
   for l in lines:
     data["Feuil1"].append(l)
   save_data(Fname, data)
